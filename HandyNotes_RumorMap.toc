@@ -5,6 +5,7 @@
 ## Author: Numy
 ## Version: @project-version@
 ## X-Curse-Project-ID: 1097435
+## X-Wago-ID: YK9EeXKL
 ## Dependencies: HandyNotes
 ## OptionalDeps: TomTom
 
