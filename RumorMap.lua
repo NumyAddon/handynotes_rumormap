@@ -20,9 +20,12 @@ local function debugPrint(...)
 end
 
 local mapID = 2255; -- Azj-Kahet
+local cityMapID = 2213; -- City of Threads
 local alternateMapIDs = {
     [2255] = true, -- Azj-Kahet
     [2256] = true, -- Azj-Kahet Lower
+    [2213] = true, -- City of Threads
+    [2216] = true, -- City of Threads Lower
 }
 local atlas = 'notoriety-32x32';
 local atlasInfo = C_Texture.GetAtlasInfo(atlas);
@@ -69,8 +72,10 @@ local modifierEnum = ns.modifierEnum;
 --- @type table<number, RumorMap_Node[]> # [uiMapID] = list of locations
 RumorMap.nodes = {
     [2255] = {},
+    [2213] = {},
 };
 RumorMap.nodes[2256] = RumorMap.nodes[2255];
+RumorMap.nodes[2216] = RumorMap.nodes[2213];
 
 function RumorMap:OnInitialize()
     for _, pin in ipairs(locations) do
@@ -79,6 +84,21 @@ function RumorMap:OnInitialize()
             local coord = HandyNotes:getCoord(x, y);
             --- @type RumorMap_Node
             self.nodes[mapID][coord] = {
+                name = pin.name,
+                description = pin.description,
+                areaPoiID = pin.areaPoiID,
+                questID = pin.questID,
+                prevQuestID = pin.prevQuestID,
+                modifierTreeID = pin.modifierTreeID,
+                x = x,
+                y = y,
+            };
+        end
+        local x, y = HBD:GetZoneCoordinatesFromWorld(pin.pos1, pin.pos0, cityMapID);
+        if x and y then
+            local coord = HandyNotes:getCoord(x, y);
+            --- @type RumorMap_Node
+            self.nodes[cityMapID][coord] = {
                 name = pin.name,
                 description = pin.description,
                 areaPoiID = pin.areaPoiID,
