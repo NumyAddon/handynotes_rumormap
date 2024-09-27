@@ -4,6 +4,7 @@
 ## IconAtlas: notoriety-32x32
 ## Author: Numy
 ## Version: @project-version@
+## SavedVariables: HandyNotes_RumorMapDB
 ## X-Curse-Project-ID: 1097435
 ## X-Wago-ID: YK9EeXKL
 ## Dependencies: HandyNotes
